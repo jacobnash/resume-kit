@@ -175,6 +175,29 @@ def check(pdf_path, md_path=None, kw_path=None, max_pages=None, kind=None):
     else:
         add("PASS", "No unusual characters")
 
+    # 5. text repeated at the top/bottom of every page (page headers/footers)
+    if len(pages) > 1:
+        original = {}
+
+        def edges(page):
+            ls = [l.strip() for l in page.splitlines() if l.strip()]
+            for l in ls:
+                original.setdefault(norm(l), l)
+            return {norm(l) for l in ls[:2] + ls[-2:]}
+        common = set.intersection(*(edges(p) for p in pages))
+        common = {c for c in common if len(c) >= 3}
+        if common:
+            shown = ", ".join(f"'{original[c]}'" for c in sorted(common)[:3])
+            add("WARN", "Text repeated on every page",
+                f"{shown} appears at the top or bottom of every page. Some ATS software merges "
+                "header/footer text into your content. Keep your name and contact details in the "
+                "body of page 1 only.")
+    p1_lines = [norm(l) for l in p1.splitlines() if l.strip()]
+    if len(p1_lines) >= 2 and p1_lines[0] == p1_lines[1]:
+        add("WARN", "Name appears twice at the top",
+            f"'{p1.strip().splitlines()[0].strip()}' is read twice, usually because it's also in a "
+            "page header. An ATS may store it as your name and your first job line.")
+
     blocks = None
     if md_path and os.path.isfile(md_path):
         with open(md_path, encoding="utf-8") as f:
@@ -251,7 +274,8 @@ def check(pdf_path, md_path=None, kw_path=None, max_pages=None, kind=None):
                      nice_total=len(kw["nice"]))
         if kw["must"]:
             pct = 100 * len(mh) // len(kw["must"])
-            level = "PASS" if pct >= 80 else ("WARN" if pct >= 60 else "FAIL")
+            # any missing must-have is worth a look; people skim for green
+            level = "PASS" if not mm else ("WARN" if pct >= 60 else "FAIL")
             detail = f"{len(mh)}/{len(kw['must'])} must-have terms found ({pct}%)."
             if mm:
                 detail += " Missing: " + ", ".join(mm) + \
@@ -276,7 +300,7 @@ def report(pdf_path, results, kw_path):
         verdict = "Clean. An ATS will read this exactly as written."
     icon = {"PASS": "PASS", "WARN": "WARN", "FAIL": "FAIL"}
     lines = [f"# ATS check: {os.path.basename(pdf_path)}", "", f"**{verdict}**", ""]
-    if kw_path:
+    if kw_path and os.path.isfile(kw_path):
         lines += [f"Keywords from: `{os.path.relpath(kw_path, os.path.dirname(pdf_path))}`", ""]
     for level, title, detail in sorted(results, key=lambda r: ["FAIL", "WARN", "PASS"].index(r[0])):
         lines.append(f"- **{icon[level]}** {title}" + (f": {detail}" if detail else ""))
@@ -297,7 +321,12 @@ def main():
         print(f"NOT FOUND  {pdf}")
         return 1
     md = a.md or os.path.splitext(pdf)[0] + ".md"
-    kw = a.keywords or find_upward(os.path.dirname(pdf), os.path.join("targets", "positioning.md")) \
+    if a.keywords:
+        kw = a.keywords if a.keywords.lower() != "none" and os.path.isfile(a.keywords) else None
+        if a.keywords.lower() != "none" and kw is None:
+            print(f"(keyword list not found: {a.keywords}; skipping the keyword check)")
+    else:
+        kw = find_upward(os.path.dirname(pdf), os.path.join("targets", "positioning.md")) \
         or find_upward(os.path.dirname(pdf), os.path.join("my-career", "targets", "positioning.md"))
     results, _ = check(pdf, md if os.path.isfile(md) else None, kw, a.max_pages, a.kind)
     verdict, text = report(pdf, results, kw)

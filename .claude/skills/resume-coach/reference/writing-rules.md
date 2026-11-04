@@ -1,7 +1,6 @@
 # Writing rules (resume and cover letter)
 
-Adapted from the about-cait / about-me resume-tailor skill, which went through a real job
-search. These apply to every document the kit produces.
+These were refined through a real job search. They apply to every document the kit produces.
 
 ## Bullets
 - **Lead with a strong, specific verb** for what *they* did: Built, Led, Cut, Designed,

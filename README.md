@@ -22,7 +22,9 @@ never invents facts. Plain language throughout. Every message ends with a number
 Progress is saved, so "hi" resumes where you left off.
 
 ## The tools (`scripts/`)
-Plain Python 3.8+. Nothing to install up front.
+Plain Python 3.8+. Nothing to install up front: on a machine with Chrome (most Macs) the
+PDF needs nothing extra. Without a browser, the scripts install ReportLab, pypdf or
+python-docx with pip on first use, which needs an internet connection that one time.
 
 ```bash
 python3 scripts/build_pdf.py my-career/output/core/resume.md      # -> resume.pdf
@@ -56,15 +58,15 @@ python3 scripts/selftest.py                                       # build + chec
 ## Keeping your own resume in git
 `my-career/` is gitignored in the kit so nobody commits personal data by accident. To keep
 your career notes in your own private repo, copy the kit there and remove the `my-career`
-lines from `.gitignore`. (See `jacobnash/about-chelsey` for an example.)
+lines from `.gitignore`. Keep that repo **private**: it holds your contact details and career history.
 
 ## Example
 `examples/sample-person/` is a fictional, fully worked example (Jordan Rivera, ops analyst
 moving into product analytics). It's used by `scripts/selftest.py` and CI.
 
 ## Origin
-Distilled from `jacobnash/about-cait` and `jacobnash/about-me` (hand-tuned resume-tailor
-skills used in a real job search) and `jacobnash/lagom` (an app version whose prompts for the
-career walkthrough, dream-job extraction and profile merging live on here).
+Distilled from a hand-tuned resume-tailoring workflow that went through a real job search,
+and from an earlier app prototype whose prompts for the career walkthrough, dream-job
+extraction and profile merging live on here.
 
 MIT licensed. Free forever. Share it with anyone job hunting.

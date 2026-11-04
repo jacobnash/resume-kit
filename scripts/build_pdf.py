@@ -390,7 +390,9 @@ def main():
     ap.add_argument("--max-pages", type=int)
     ap.add_argument("--kind", choices=["resume", "letter"], help="default: guessed from file name")
     ap.add_argument("--renderer", default="auto", choices=["auto"] + ORDER)
-    ap.add_argument("--open", action="store_true", help="open the PDF when done")
+    ap.add_argument("--open", dest="open", action="store_true",
+                    help="open the PDF when done (default: don't)")
+    ap.add_argument("--no-open", dest="open", action="store_false", help="don't open the PDF (default)")
     ap.add_argument("--doctor", action="store_true", help="show which PDF makers are available")
     a = ap.parse_args()
 

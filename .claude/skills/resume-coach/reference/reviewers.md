@@ -1,4 +1,4 @@
-# Independent review (from the about-cait resume-tailor skill, Phase 4)
+# Independent review
 
 You wrote the documents, so you can't see your own blind spots. Before showing the person
 a finished resume or cover letter, get two **independent** reads.
