@@ -1,0 +1,13 @@
+/* minimal: quiet grayscale, no rules under headings. Lets dense content breathe. */
+:root {
+  --body-font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+  --ink: #222;
+  --muted: #666;
+  --accent: #222;
+  --rule: transparent;
+  --name-weight: 600;
+  --h2-size: 0.95rem;
+  --h2-spacing: 0.14em;
+  --h2-color: #555;
+  --h2-rule: 0;
+}

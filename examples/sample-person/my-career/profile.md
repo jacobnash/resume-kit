@@ -1,0 +1,12 @@
+# Profile
+- Name on resume: Jordan Rivera
+- Email: jordan.rivera@example.com
+- Phone: (555) 010-2233
+- Location: Denver, CO
+- Links: linkedin.com/in/jordan-rivera-example
+- Job market: United States
+- Paper size: Letter
+- Theme: modern
+- Work authorization: US citizen, no sponsorship needed
+- Never mention: current employer must not know about the search (no "open to work" language)
+- Notes: 4-month gap in 2019 between Summit and Front Range (moved cities). Leave dates as they are.

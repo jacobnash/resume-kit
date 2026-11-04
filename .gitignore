@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+# The kit ships with an empty my-career/. Your own copy is private.
+# (If you fork this to keep your own resume in git, delete these lines.)
+my-career/*
+!my-career/README.md

@@ -1,0 +1,115 @@
+/* resume-kit base layout. One column, real text, standard headings:
+   the shape applicant tracking systems (ATS) read reliably.
+   Themes only set the variables below. Sizes are in rem so build_pdf.py
+   can shrink the whole document evenly to fit the page limit. */
+
+:root {
+  --body-font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+  --head-font: var(--body-font);
+  --name-font: var(--head-font);
+  --ink: #1d1d1f;
+  --muted: #55555a;
+  --accent: #1d1d1f;
+  --rule: #c9c9cf;
+  --name-size: 2.0rem;
+  --name-weight: 700;
+  --name-rule: 0;
+  --h2-size: 1.05rem;
+  --h2-transform: uppercase;
+  --h2-spacing: 0.08em;
+  --h2-style: normal;
+  --h2-weight: 700;
+  --h2-color: var(--accent);
+  --h2-rule: 0.75px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--body-font);
+  font-size: 1rem;
+  line-height: 1.38;
+  color: var(--ink);
+  background: #fff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  /* ligatures (fi, fl) can extract as odd glyphs in some ATS parsers */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0;
+}
+
+.masthead { margin-bottom: 0.7rem; }
+
+h1 {
+  font-family: var(--name-font);
+  font-size: var(--name-size);
+  font-weight: var(--name-weight);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  padding-bottom: 0.25rem;
+  border-bottom: var(--name-rule) solid var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+p.contact {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0.1rem 0 0;
+}
+
+h2 {
+  font-family: var(--head-font);
+  font-size: var(--h2-size);
+  font-weight: var(--h2-weight);
+  font-style: var(--h2-style);
+  text-transform: var(--h2-transform);
+  letter-spacing: var(--h2-spacing);
+  color: var(--h2-color);
+  margin: 0.95rem 0 0.35rem;
+  padding-bottom: 0.15rem;
+  border-bottom: var(--h2-rule) solid var(--rule);
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0.6rem 0 0.1rem;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+h3 .what { flex: 1 1 auto; }
+h3 .when { flex: 0 0 auto; font-weight: 400; color: var(--muted); white-space: nowrap; }
+/* the "|" stays in the text layer so ATS parsers get a separator, but is not shown */
+h3 .sep { font-size: 0; color: transparent; }
+
+h2 + h3 { margin-top: 0.2rem; }
+
+p { margin: 0.15rem 0; }
+p + p { margin-top: 0.45rem; }
+h3 + p { margin-top: 0; color: var(--muted); font-style: italic; }
+
+ul { margin: 0.15rem 0 0.1rem 1.05rem; }
+li { margin-bottom: 0.12rem; padding-left: 0.1rem; }
+li, p { orphans: 2; widows: 2; }
+li { break-inside: avoid; page-break-inside: avoid; }
+
+strong { font-weight: 700; }
+a { color: inherit; text-decoration: none; }
+code { font-family: inherit; }
+
+hr { border: none; border-top: 0.5px solid var(--rule); margin: 0.5rem 0; }
+
+.page-break { break-before: page; page-break-before: always; }
+
+/* Cover letters: roomier prose */
+body.letter { line-height: 1.5; }
+body.letter p + p { margin-top: 0.8rem; }
+body.letter .masthead { margin-bottom: 1.4rem; }
