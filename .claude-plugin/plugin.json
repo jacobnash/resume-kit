@@ -1,0 +1,12 @@
+{
+  "name": "resume-kit",
+  "displayName": "Resume Kit",
+  "version": "0.1.0",
+  "description": "A free, guided resume coach: walks you through your career line by line, targets the 3 jobs you want, and exports an ATS-safe, great-looking PDF and cover letter. No prompting skills needed.",
+  "author": { "name": "Jacob Nash", "url": "https://github.com/jacobnash" },
+  "homepage": "https://github.com/jacobnash/resume-kit",
+  "repository": "https://github.com/jacobnash/resume-kit",
+  "license": "MIT",
+  "keywords": ["resume", "cv", "cover letter", "ats", "job search", "career"],
+  "skills": ["./.claude/skills/"]
+}

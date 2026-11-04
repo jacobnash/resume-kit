@@ -1,0 +1,11 @@
+/* classic: serif headings, black and white. Safe for law, finance, academia, government. */
+:root {
+  --body-font: Georgia, "Times New Roman", "Liberation Serif", "DejaVu Serif", serif;
+  --head-font: Georgia, "Times New Roman", "Liberation Serif", serif;
+  --ink: #111;
+  --muted: #444;
+  --accent: #111;
+  --rule: #111;
+  --name-rule: 1.5px;
+  --h2-rule: 0.75px;
+}

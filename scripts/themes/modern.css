@@ -1,0 +1,10 @@
+/* modern: clean sans-serif with a navy accent. Safe default for most roles, especially tech. */
+:root {
+  --body-font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", "DejaVu Sans", sans-serif;
+  --ink: #1b1f24;
+  --muted: #57606a;
+  --accent: #1f4e79;
+  --rule: #b8c4d0;
+  --name-size: 2.15rem;
+  --h2-color: #1f4e79;
+}

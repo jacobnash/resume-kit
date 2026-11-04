@@ -1,0 +1,4 @@
+# All optional. The scripts install what they need on first use.
+pypdf>=4          # page counting + the ATS read-back check
+python-docx>=1.0  # Word export
+reportlab>=4      # fallback PDF maker when no Chrome/Chromium is available

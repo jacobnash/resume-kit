@@ -1,0 +1,22 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install optional deps
+        run: pip install -r scripts/requirements.txt
+      - name: Build + ATS-check the example (Chrome, ReportLab)
+        run: python3 scripts/selftest.py chrome reportlab
+      - name: Validate plugin manifests
+        run: |
+          python3 -c "import json; json.load(open('.claude-plugin/plugin.json')); json.load(open('.claude-plugin/marketplace.json'))"
+          for f in .claude/skills/*/SKILL.md; do head -1 "$f" | grep -q '^---$' || { echo "bad frontmatter: $f"; exit 1; }; done
