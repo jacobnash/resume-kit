@@ -1,0 +1,19 @@
+/* warm: serif name and italic section headers with a terracotta accent.
+   Good for design, research, creative roles. */
+:root {
+  --body-font: "Avenir Next", -apple-system, "Helvetica Neue", Arial, "Liberation Sans", sans-serif;
+  --head-font: "New York", ui-serif, Georgia, "Times New Roman", "Liberation Serif", serif;
+  --ink: #2b241f;
+  --muted: #6b625a;
+  --accent: #b5592c;
+  --rule: #c98a5e;
+  --name-size: 1.95rem;
+  --name-weight: 600;
+  --name-rule: 2px;
+  --h2-size: 1.12rem;
+  --h2-transform: none;
+  --h2-spacing: 0.02em;
+  --h2-style: italic;
+  --h2-weight: 500;
+  --h2-color: #2b241f;
+}

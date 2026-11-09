@@ -1,0 +1,15 @@
+{
+  "name": "resume-kit",
+  "description": "Resume Kit: a free, guided resume and cover letter coach for Claude.",
+  "owner": {
+    "name": "Jacob Nash",
+    "url": "https://github.com/jacobnash"
+  },
+  "plugins": [
+    {
+      "name": "resume-kit",
+      "source": "./",
+      "description": "A free, guided resume coach with ATS-safe PDF export."
+    }
+  ]
+}
